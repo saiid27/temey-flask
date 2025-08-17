@@ -8,7 +8,7 @@
   }
   img{
      width: 300px;
-        height: 150px;
+        height: 100px;
         padding: 8px;
   }
 </style>
@@ -16,7 +16,7 @@
 <div class="container py-5">
   <div class="col-12 col-md-7 col-lg-5 mx-auto">
     <div class="card shadow p-4">
-      <h4 class="text-center mb-3">اضافة معلومات الطالeeeeeب</h4>
+      <h4 class="text-center mb-3">اضافة معلومات الطالب</h4>
       {% with msgs=get_flashed_messages(with_categories=true) %}{% for c,m in msgs %}
       <div class="alert alert-{{c}}">{{m}}</div>{% endfor %}{% endwith %}
       <form method="POST" enctype="multipart/form-data">
