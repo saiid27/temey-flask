@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inscription étudiant</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
+<style>
+  h4{
+    color: aqua;
+  }
+  img{
+     width: 300px;
+        height: 150px;
+        padding: 8px;
+  }
+</style>
+<body class="bg-light">
+<div class="container py-5">
+  <div class="col-12 col-md-7 col-lg-5 mx-auto">
+    <div class="card shadow p-4">
+      <h4 class="text-center mb-3">اضافة معلومات الطالب</h4>
+      {% with msgs=get_flashed_messages(with_categories=true) %}{% for c,m in msgs %}
+      <div class="alert alert-{{c}}">{{m}}</div>{% endfor %}{% endwith %}
+      <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3"><label class="form-label">اسم المستخدم</label>
+          <input name="username" class="form-control" required></div>
+        <div class="mb-3"><label class="form-label">رقم الواتساب  </label>
+          <input name="phone" class="form-control" required pattern="^[0-9+ ]{6,}$" placeholder="+222..."></div>
+        <div class="mb-3"><label class="form-label">  كلمة المرور</label>
+          <input type="password" name="password" class="form-control" required></div>
+        <div class="mb-3"><label class="form-label">القسم</label>
+          <select name="level" class="form-select" required>
+            <option value="4as">4AS</option><option value="7D">7D</option><option value="7O">7O</option>
+          </select>
+        </div>
+       
+        <br>
+        <h4>ارسل المبلغ الي الرقم التالي</h4>
+         <img src="{{ url_for('static', filename='bankili.jpg') }}" alt="temeyouzi" onerror="this.style.display='none';this.parentNode.innerHTML='temeyouzi'">
+        <br>
+        <div class="mb-3"><label class="form-label"> رفع صورة لاثبات الدفع</label>
+          <input type="file" name="payment_image" class="form-control" accept=".jpg,.jpeg,.png,.webp,.pdf" required>
+        </div>
+        <button class="btn btn-success w-100"> مواصلة التسجيل  </button>
+      </form>
+      <div class="text-center mt-3">
+        <a href="{{ url_for('home') }}">عودة لتسجيل الدخول</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

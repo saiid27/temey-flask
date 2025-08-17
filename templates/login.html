@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connexion</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+h5{
+  color: black;
+}
+h4{
+color: rgb(96, 215, 236);  
+}
+.logo-img {
+    width: 85px;
+    height: 85px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+ .logo-img {
+        width: 65px;
+        height: 65px;
+        padding: 8px;
+    }
+     .logo-img {
+        width: 75px;
+        height: 75px;
+    }
+    
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.logo-img img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+footer{
+  color: #52bfe0;
+  text-align: center;
+}
+</style>
+</head>
+<body class="bg-light">
+   
+<div class="container py-5">
+                       
+  <div class="col-12 col-md-6 col-lg-4 mx-auto">
+    <div class="card shadow p-4">
+                    <div class="logo-img">
+                                <!-- Utilisez cette balise img pour votre logo ISME -->
+                                <img src="{{ url_for('static', filename='logo temeyouzi.jpg') }}" alt="temeyouzi" onerror="this.style.display='none';this.parentNode.innerHTML='temeyouzi'">
+                            </div>
+      <h4 class="text-center mb-3">تسجيل الدخول</h4>
+      {% with msgs=get_flashed_messages(with_categories=true) %}{% for c,m in msgs %}
+      <div class="alert alert-{{c}}">{{m}}</div>{% endfor %}{% endwith %}
+
+      <form method="POST" action="{{ url_for('login') }}">
+        <div class="mb-3"><label class="form-label">اسم المستخدم</label>
+          <input name="username" class="form-control" placeholder="اسم المستخدم" required></div>
+        <div class="mb-3"><label class="form-label">كلمة المرور</label>
+           <input type="password" name="password" id="password" class="form-control" 
+                                           required autocomplete="current-password"
+                                           placeholder="ادخل كلمة المرور">
+                                    <button type="button" class="password-toggle" id="togglePassword" aria-label="Afficher/Masquer le mot de passe">
+                                        <i class="bi bi-eye" id="eye-icon"></i>
+                                    </button>
+          <!-- Option Se souvenir de moi -->
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="rememberMe" name="remember">
+                                <label class="form-check-label text-light opacity-75" for="rememberMe">
+                                  <h5>
+                               تذكرني
+                                    </h5>
+                                </label>
+                            </div>
+
+        <button class="btn btn-primary w-100">دخول</button>
+      </form>
+      <div class="d-flex justify-content-between mt-3">
+        <a href="{{ url_for('register') }}">انشاء حساب</a>
+        <a href="{{ url_for('forgot') }}">نسيت كلمة المرور?</a>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<footer>منصة تميزى @2025</footer>
+</body></html>
