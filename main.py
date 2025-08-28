@@ -35,10 +35,10 @@ def allowed(fn, exts): return "." in fn and fn.rsplit(".",1)[1].lower() in exts
 
 # ===== MySQL =====
 # قراءة المتغيرات البيئية من Vercel أو من إعدادات InfinityFree
-DB_HOST = os.environ.get('DATABASE_HOST', 'sqlXXX.epizy.com')  # استبدل `sqlXXX` بالعنوان الصحيح
-DB_USER = os.environ.get('DATABASE_USER', 'epiz_XXXXXX')  # اسم المستخدم الذي حصلت عليه من InfinityFree
-DB_PASSWORD = os.environ.get('DATABASE_PASSWORD', 'your_password')  # كلمة المرور
-DB_NAME = os.environ.get('DATABASE_NAME', 'your_database_name')  # اسم قاعدة البيانات
+DB_HOST = os.environ.get('DATABASE_HOST', 'sql302.infinityfree.com')  # استبدل `sqlXXX` بالعنوان الصحيح
+DB_USER = os.environ.get('DATABASE_USER', 'if0_39807083')  # اسم المستخدم الذي حصلت عليه من InfinityFree
+DB_PASSWORD = os.environ.get('DATABASE_PASSWORD', '27073327')  # كلمة المرور
+DB_NAME = os.environ.get('DATABASE_NAME', 'if0_39807083_tem')  # اسم قاعدة البيانات
 
 # الاتصال بقاعدة البيانات
 def db():
