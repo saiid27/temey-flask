@@ -34,8 +34,24 @@ PDF_EXT   = {"pdf"}
 def allowed(fn, exts): return "." in fn and fn.rsplit(".",1)[1].lower() in exts
 
 # ===== MySQL =====
-DB = dict(host="localhost", user="root", password="", database="school_app")
-def db(): return mysql.connector.connect(**DB)
+# قراءة المتغيرات البيئية من Vercel أو من إعدادات InfinityFree
+DB_HOST = os.environ.get('DATABASE_HOST', 'sqlXXX.epizy.com')  # استبدل `sqlXXX` بالعنوان الصحيح
+DB_USER = os.environ.get('DATABASE_USER', 'epiz_XXXXXX')  # اسم المستخدم الذي حصلت عليه من InfinityFree
+DB_PASSWORD = os.environ.get('DATABASE_PASSWORD', 'your_password')  # كلمة المرور
+DB_NAME = os.environ.get('DATABASE_NAME', 'your_database_name')  # اسم قاعدة البيانات
+
+# الاتصال بقاعدة البيانات
+def db():
+    try:
+        return mysql.connector.connect(
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_NAME
+        )
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        return None
 
 # ===== SMS (Twilio ou mode DEV) =====
 TWILIO_SID   = os.getenv("TWILIO_ACCOUNT_SID")
@@ -353,3 +369,4 @@ def student_dashboard():
 if __name__ == "__main__":
     print("Uploads:", UP)
 app.run(host='0.0.0.0', port=5000, debug=True)
+
